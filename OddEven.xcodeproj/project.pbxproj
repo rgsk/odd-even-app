@@ -16,6 +16,7 @@
 		D5D2666A2A62E2D600753E95 /* SelectTeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D266692A62E2D600753E95 /* SelectTeamView.swift */; };
 		D5D2666C2A62E3F200753E95 /* players.json in Resources */ = {isa = PBXBuildFile; fileRef = D5D2666B2A62E3F200753E95 /* players.json */; };
 		D5D266722A6308C300753E95 /* SelectedItemPillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D266712A6308C300753E95 /* SelectedItemPillView.swift */; };
+		D5D266782A6310EF00753E95 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D266772A6310EF00753E95 /* SearchView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		D5D266692A62E2D600753E95 /* SelectTeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTeamView.swift; sourceTree = "<group>"; };
 		D5D2666B2A62E3F200753E95 /* players.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = players.json; sourceTree = "<group>"; };
 		D5D266712A6308C300753E95 /* SelectedItemPillView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedItemPillView.swift; sourceTree = "<group>"; };
+		D5D266772A6310EF00753E95 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 				D5D266672A62E1C300753E95 /* CricketPlayersData.swift */,
 				D5D2666B2A62E3F200753E95 /* players.json */,
 				D5D266692A62E2D600753E95 /* SelectTeamView.swift */,
+				D5D266772A6310EF00753E95 /* SearchView.swift */,
 				D5D266712A6308C300753E95 /* SelectedItemPillView.swift */,
 				D5D266652A62D0BA00753E95 /* Todos.swift */,
 				D5D2665A2A62CFD500753E95 /* Assets.xcassets */,
@@ -158,6 +161,7 @@
 				D5D266662A62D0BA00753E95 /* Todos.swift in Sources */,
 				D5D266592A62CFD400753E95 /* ContentView.swift in Sources */,
 				D5D266682A62E1C300753E95 /* CricketPlayersData.swift in Sources */,
+				D5D266782A6310EF00753E95 /* SearchView.swift in Sources */,
 				D5D266722A6308C300753E95 /* SelectedItemPillView.swift in Sources */,
 				D5D2666A2A62E2D600753E95 /* SelectTeamView.swift in Sources */,
 				D5D266572A62CFD400753E95 /* OddEvenApp.swift in Sources */,
