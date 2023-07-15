@@ -9,22 +9,22 @@ import SwiftUI
 
 struct SelectTeamView: View {
     @StateObject private var viewModel = PlayerViewModel()
-       @State private var searchPrefix = ""
+       @State private var searchQuery = ""
 
        var body: some View {
            VStack {
-               TextField("Search", text: $searchPrefix)
+               TextField("Search", text: $searchQuery)
                    .padding()
-                   .onChange(of: searchPrefix) { prefix in
-                       viewModel.filterPlayers(with: prefix)
+                   .onChange(of: searchQuery) { query in
+                       viewModel.filterPlayers(with: query)
                    }
                
                ScrollView {
                    LazyVStack {
-                       ForEach(viewModel.displayedPlayers) { player in
-                           Text(player.name)
+                       ForEach(viewModel.displayedPlayers, id: \.self) { player in
+                           Text(player)
                                .onAppear {
-                                   if isLastPlayer(player) {
+                                   if player == viewModel.displayedPlayers.last {
                                        viewModel.loadMorePlayers()
                                    }
                                }
@@ -35,11 +35,7 @@ struct SelectTeamView: View {
            }
        }
        
-       func isLastPlayer(_ item: CricketPlayer?) -> Bool {
-           guard let item = item else { return false }
-           guard let lastPlayer = viewModel.displayedPlayers.last else { return false }
-           return item.id == lastPlayer.id
-       }
+  
 }
 
 struct SelectTeamView_Previews: PreviewProvider {

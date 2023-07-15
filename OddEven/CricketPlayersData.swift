@@ -7,9 +7,10 @@ struct CricketPlayer: Codable, Identifiable {
 }
 
 class PlayerViewModel: ObservableObject {
-    var players: [CricketPlayer] = []
-    var filteredPlayers: [CricketPlayer] = []
-    @Published var displayedPlayers: [CricketPlayer] = []
+    var playersData: [CricketPlayer] = []
+    var players: [String] = []
+    var filteredPlayers: [String] = []
+    @Published var displayedPlayers: [String] = []
     
     var currentPage = 1
     var playersPerPage = 100
@@ -23,8 +24,8 @@ class PlayerViewModel: ObservableObject {
             do {
                 let jsonString = try String(contentsOfFile: path)
                 let jsonData = jsonString.data(using: .utf8)
-                players = try JSONDecoder().decode([CricketPlayer].self, from: jsonData!)
-                players = removeDuplicatePlayers(players)
+                playersData = try JSONDecoder().decode([CricketPlayer].self, from: jsonData!)
+                players = Array(Set(playersData.map {$0.name}))
                 filteredPlayers = players
                 loadMorePlayers()
             } catch {
@@ -35,26 +36,18 @@ class PlayerViewModel: ObservableObject {
         }
     }
     
-    func removeDuplicatePlayers(_ players: [CricketPlayer]) -> [CricketPlayer] {
-         var uniquePlayers: [CricketPlayer] = []
-         var encounteredNames: Set<String> = []
-         
-         for player in players {
-             if !encounteredNames.contains(player.name.lowercased()) {
-                 encounteredNames.insert(player.name.lowercased())
-                 uniquePlayers.append(player)
-             }
-         }
-         
-         return uniquePlayers
-     }
-    
-    func filterPlayers(with prefix: String) {
+    func filterPlayers(with query: String) {
         displayedPlayers = []
         currentPage = 1
-        filteredPlayers = players.filter { $0.name.lowercased().hasPrefix(prefix.lowercased()) }
+        
+        let lowercaseQuery = query.lowercased()
+        let prefixMatches = players.filter { $0.lowercased().hasPrefix(lowercaseQuery) }
+        let otherMatches = players.filter { $0.lowercased().contains(lowercaseQuery) && !$0.lowercased().hasPrefix(lowercaseQuery) }
+        
+        filteredPlayers = prefixMatches + otherMatches
         loadMorePlayers()
     }
+
     
     func loadMorePlayers() {
         let startIndex = (currentPage - 1) * playersPerPage
