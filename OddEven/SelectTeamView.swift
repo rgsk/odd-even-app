@@ -26,7 +26,7 @@ struct SelectTeamView: View {
                         isSearchFocused = false
                     }
                 })
-                .transition(.opacity) // Apply fade-in and fade-out transition
+                .modifier(AnimateOpacity())
             } else {
                 TextField("Search", text: $searchQuery)
                     .padding()
@@ -47,7 +47,7 @@ struct SelectTeamView: View {
                         .onMove(perform: movePlayer)
                     }
                 }.padding(.top,12)
-                    .transition(.opacity) // Apply fade-in and fade-out transition
+                    .modifier(AnimateOpacity())
             }
             
         }
@@ -62,6 +62,14 @@ struct SelectTeamView: View {
         selectedPlayers.move(fromOffsets: source, toOffset: destination)
     }
 }
+
+struct AnimateOpacity: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.1)))
+    }
+}
+
 
 
 

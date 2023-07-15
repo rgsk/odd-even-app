@@ -25,7 +25,7 @@ class PlayerViewModel: ObservableObject {
                 let jsonString = try String(contentsOfFile: path)
                 let jsonData = jsonString.data(using: .utf8)
                 playersData = try JSONDecoder().decode([CricketPlayer].self, from: jsonData!)
-                players = Array(Set(playersData.map {$0.name}))
+                players = Array(Set(playersData.map {$0.name})).sorted()
                 filteredPlayers = players
                 loadMorePlayers()
             } catch {
