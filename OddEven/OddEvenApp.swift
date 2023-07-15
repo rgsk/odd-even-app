@@ -11,7 +11,7 @@ import SwiftUI
 struct OddEvenApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            SelectTeamView()
         }
     }
 }
