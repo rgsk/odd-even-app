@@ -26,15 +26,17 @@ struct SelectTeamView: View {
             
             Divider()
             
-            Text("Selected Players:")
-                .font(.headline)
-            
-            List {
-                ForEach(selectedPlayers, id: \.self) { player in
-                    Text(player)
+            VStack {
+                Text("Selected Players:")
+                    .font(.headline)
+                
+                List {
+                    ForEach(selectedPlayers, id: \.self) { player in
+                        Text(player)
+                    }
+                    .onMove(perform: movePlayer)
                 }
-                .onMove(perform: movePlayer)
-            }
+            }.padding(.top,12)
         }
         .fullScreenCover(isPresented: $isSearchFocused) {
             SearchView(searchQuery: $searchQuery, viewModel: viewModel, selectedPlayers: $selectedPlayers, isSearchFocused: $isSearchFocused)
@@ -92,7 +94,7 @@ struct SearchView: View {
                           
                         }
                     }
-                    .padding(.horizontal)
+                    .padding()
                 }
             }
             
@@ -139,29 +141,7 @@ struct SearchView: View {
     }
 }
 
-struct SelectedItemPillView: View {
-    let player: String
-    let onCrossClick: () -> ()
-    var body: some View {
-        HStack {
-            Text(player)
-                .padding(.horizontal, 12)
-                .padding(.vertical, 6)
-                .background(Color.accentColor)
-                .foregroundColor(.white)
-                .cornerRadius(15)
-                .frame(width:100)
-                .lineLimit(1)
-                      .truncationMode(.tail)
-                
-            Button(action: {
-                onCrossClick()
-            }) {
-                Image(systemName: "xmark.circle.fill")
-            }
-        }
-    }
-}
+
 
 struct SelectTeamView_Previews: PreviewProvider {
     static var previews: some View {
